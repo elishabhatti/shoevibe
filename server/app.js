@@ -1,5 +1,6 @@
 import express from "express";
 import { connectDb } from "./config/DB_CONNECTION.js";
+import { router } from "./routes/shoe.routes.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -13,7 +14,6 @@ app.use((req, res, next) => {
   return next();
 });
 
-
-app.use("/api/shoe", shoeRouter);
+app.use("/api", router);
 
 app.listen(PORT);
