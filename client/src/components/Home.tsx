@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 
 const Home = () => {
   interface Shoe {
-    title:string;
-    description:string;
-    image:string;
-    price:number;
-    reviews:string;
-    sizes:string[];
-    stock:string;
+    title: string;
+    description: string;
+    image: string;
+    price: number;
+    reviews: string;
+    sizes: string[];
+    stock: string;
   }
   const [shoes, setShoes] = useState<Shoe[]>([]);
 
@@ -18,7 +18,7 @@ const Home = () => {
         const res = await fetch("http://localhost:3000/api/shoe");
         const data = await res.json();
         console.log(data.data);
-        
+
         setShoes(data.data); // save in state
       } catch (err) {
         console.error("Error fetching shoes:", err);
@@ -30,8 +30,8 @@ const Home = () => {
   return (
     <div className="flex flex-col items-center p-10">
       {/* Hero Section */}
-      <div className="w-full flex flex-col md:flex-row gap-5 items-center">
-        <div className="w-full md:w-1/2 flex flex-col gap-5 items-start">
+      <div className="shadow-md shadow-gray-300 rounded-md p-5 w-full flex flex-col md:flex-row gap-5 items-center justify-center">
+        <div className="w-full md:w-1/2 flex flex-col gap-5 items-center border">
           <h1 className="font-bold text-6xl md:text-9xl">CRAZY SHOES.</h1>
           <p>
             Step in style, comfort and confidence <br /> - Discover the perfect
