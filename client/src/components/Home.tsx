@@ -7,13 +7,13 @@ const Home = () => {
           Step in style, comfort and confidence <br /> -Discover the perfect
           pair today
         </p>
-        <button>Show now </button>
+        <button className="bg-black text-white px-6 py-2 rounded-full">Show now</button>
       </div>
       <div className="w-[50%]">
         <img
           className="w-full rounded-4xl"
           src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c2hvZXxlbnwwfHwwfHx8MA%3D%3D"
-          alt=""
+          alt="Shoe Pic"
         />
       </div>
     </div>
