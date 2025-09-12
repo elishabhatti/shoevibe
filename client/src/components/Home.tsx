@@ -1,4 +1,13 @@
+import { useEffect } from "react";
+
 const Home = () => {
+  useEffect(() => {
+    const fetchShoes = async () => {
+      const shoe = await fetch("http://localhost:3000/api/shoe");
+      console.log(await shoe.json());
+    };
+    fetchShoes()
+  }, []);
   return (
     <div className="flex justify-center items-center p-10">
       <div className="w-[50%] flex flex-col gap-5 items-start">

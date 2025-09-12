@@ -1,9 +1,12 @@
 import express from "express";
 import { connectDb } from "./config/DB_CONNECTION.js";
 import { router } from "./routes/shoe.routes.js";
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT;
+
+app.use(cors());
 
 connectDb();
 
