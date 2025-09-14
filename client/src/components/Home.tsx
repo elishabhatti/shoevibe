@@ -30,8 +30,8 @@ const Home = () => {
   return (
     <div className="flex flex-col items-center p-10 bg-white text-black">
       {/* HERO SECTION */}
-      <section className="relative w-full bg-white text-black py-20 px-6 md:px-16 overflow-hidden">
-        <div className="flex flex-col md:flex-row items-center   gap-12">
+      <section className="relative w-full bg-gray-50 rounded-2xl text-black py-20 px-6 md:px-16 overflow-hidden">
+        <div className="flex flex-col md:flex-row items-center gap-12">
           {/* Left Content */}
           <motion.div
             initial={{ x: -100, opacity: 0 }}
@@ -82,10 +82,10 @@ const Home = () => {
 
       {/* PRODUCT SECTION */}
       <div className=" w-full max-w-7xl">
-        <h1 className="text-4xl font-bold text-center text-black">
+        <h1 className="text-4xl my-8 font-bold text-center text-black">
           Our Collection
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {shoes.map((shoe, index) => (
             <motion.div
               key={index}
