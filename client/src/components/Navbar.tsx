@@ -8,10 +8,10 @@ const Navbar = () => {
   const toggleMenu = () => setOpen(!open);
 
   return (
-    <nav className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav className="bg-white border-b-1 border-gray-300 fixed top-0 w-full z-50">
+      <div className="py-4 md:px-20 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-blue-600">
+        <Link to="/" className="text-4xl font-bold text-black">
           ShoeVibe
         </Link>
 
@@ -32,10 +32,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-gray-700"
-          onClick={toggleMenu}
-        >
+        <button className="md:hidden text-gray-700" onClick={toggleMenu}>
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
@@ -43,16 +40,32 @@ const Navbar = () => {
       {/* Mobile Links */}
       {open && (
         <div className="md:hidden bg-white shadow-md px-6 py-4 flex flex-col gap-4">
-          <Link onClick={toggleMenu} to="/" className="text-gray-700 hover:text-blue-600">
+          <Link
+            onClick={toggleMenu}
+            to="/"
+            className="text-gray-700 hover:text-blue-600"
+          >
             Home
           </Link>
-          <Link onClick={toggleMenu} to="/shop" className="text-gray-700 hover:text-blue-600">
+          <Link
+            onClick={toggleMenu}
+            to="/shop"
+            className="text-gray-700 hover:text-blue-600"
+          >
             Shop
           </Link>
-          <Link onClick={toggleMenu} to="/about" className="text-gray-700 hover:text-blue-600">
+          <Link
+            onClick={toggleMenu}
+            to="/about"
+            className="text-gray-700 hover:text-blue-600"
+          >
             About
           </Link>
-          <Link onClick={toggleMenu} to="/contact" className="text-gray-700 hover:text-blue-600">
+          <Link
+            onClick={toggleMenu}
+            to="/contact"
+            className="text-gray-700 hover:text-blue-600"
+          >
             Contact
           </Link>
         </div>
