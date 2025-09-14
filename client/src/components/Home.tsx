@@ -31,7 +31,7 @@ const Home = () => {
     <div className="flex flex-col items-center p-10 bg-white text-black">
       {/* HERO SECTION */}
       <section className="relative w-full bg-white text-black py-20 px-6 md:px-16 overflow-hidden">
-        <div className="flex flex-col md:flex-row items-center gap-12">
+        <div className="flex flex-col md:flex-row items-center   gap-12">
           {/* Left Content */}
           <motion.div
             initial={{ x: -100, opacity: 0 }}
@@ -81,7 +81,7 @@ const Home = () => {
       </section>
 
       {/* PRODUCT SECTION */}
-      <div className="mt-16 w-full max-w-7xl">
+      <div className=" w-full max-w-7xl">
         <h1 className="text-4xl font-bold text-center text-black">
           Our Collection
         </h1>
@@ -103,9 +103,7 @@ const Home = () => {
                 <h2 className="text-xl font-semibold text-black">
                   {shoe.title}
                 </h2>
-                <p className="text-sm text-gray-600 mt-2">
-                  {shoe.description}
-                </p>
+                <p className="text-sm text-gray-600 mt-2">{shoe.description}</p>
                 <div className="flex justify-between items-center w-full mt-4">
                   <p className="text-xl font-bold text-black">${shoe.price}</p>
                   <div className="flex items-center space-x-2 text-sm text-gray-600">
