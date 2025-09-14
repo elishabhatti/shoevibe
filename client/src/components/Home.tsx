@@ -31,8 +31,8 @@ const Home = () => {
     <div className="flex flex-col items-center p-10">
       {/* Hero Section */}
       <div className="shadow-md shadow-gray-300 rounded-md p-5 w-full flex flex-col md:flex-row gap-5 items-center justify-center">
-        <div className="w-full md:w-1/2 flex flex-col gap-5 items-center border">
-          <h1 className="font-bold text-6xl md:text-9xl">CRAZY SHOES.</h1>
+        <div className="w-full md:w-1/2 flex flex-col gap-5 items-center">
+          <h1 className="font-bold text-6xl md:text-7xl">CRAZY SHOES.</h1>
           <p>
             Step in style, comfort and confidence <br /> - Discover the perfect
             pair today
@@ -49,8 +49,10 @@ const Home = () => {
           />
         </div>
       </div>
-
       {/* Shoes Data Section */}
+        <div>
+          <h1 className="text-4xl font-bold mt-9">Products</h1>
+        </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-12 w-full">
         {shoes.map((shoe, index) => (
           <div
