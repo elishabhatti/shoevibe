@@ -50,29 +50,43 @@ const Home = () => {
         </div>
       </div>
       {/* Shoes Data Section */}
-        <div>
-          <h1 className="text-4xl font-bold mt-9">Products</h1>
-        </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-12 w-full">
+      <div>
+        <h1 className="text-4xl font-bold mt-9">Products</h1>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-12 w-full">
         {shoes.map((shoe, index) => (
           <div
             key={index}
-            className="shadow-lg rounded-2xl p-4 flex flex-col items-center bg-white"
+            className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1"
           >
             <img
               src={shoe.image}
               alt={shoe.title}
-              className="w-full h-56 object-cover rounded-xl"
+              className="w-full h-56 object-cover"
             />
-            <h2 className="text-xl font-bold mt-3">{shoe.title}</h2>
-            <p className="text-gray-600 text-sm mt-1">{shoe.description}</p>
-            <p className="mt-2 font-semibold">${shoe.price}</p>
-            <p className="text-sm text-gray-500">⭐ {shoe.reviews} / 5</p>
-            <p className="text-sm text-gray-500">{shoe.stock} / 5</p>
-            <p className="text-sm">Available sizes: {shoe.sizes}</p>
-            <button className="bg-black text-white px-4 py-2 mt-3 rounded-full">
-              Buy Now
-            </button>
+            <div className="p-5 flex flex-col items-start text-left">
+              <h2 className="text-xl font-semibold text-gray-800">
+                {shoe.title}
+              </h2>
+              <p className="text-sm text-gray-500 mt-1">{shoe.description}</p>
+              <div className="flex justify-between items-center w-full mt-4">
+                <p className="text-xl font-bold text-gray-900">${shoe.price}</p>
+                <div className="flex items-center space-x-2 text-sm text-gray-600">
+                  <span className="flex items-center">
+                    <span className="text-yellow-400">★</span> {shoe.reviews}{" "}
+                    reviews
+                  </span>
+                  <span>|</span>
+                  <span>{shoe.stock} in stock</span>
+                </div>
+              </div>
+              <p className="text-sm text-gray-500 mt-2">
+                Sizes: {shoe.sizes.join(", ")}
+              </p>
+              <button className="w-full mt-5 py-3 px-6 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-700 transition-colors">
+                Add to Cart
+              </button>
+            </div>
           </div>
         ))}
       </div>
