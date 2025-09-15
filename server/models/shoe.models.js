@@ -8,6 +8,7 @@ const shoeSchema = new mongoose.Schema({
   reviews: { type: Number, default: 0, min: 0, max: 5 },
   sizes: { type: [Number], required: true },
   image: { type: String, required: true },
+  brand: { type: String},
   createdAt: { type: Date, default: Date.now },
 });
 
