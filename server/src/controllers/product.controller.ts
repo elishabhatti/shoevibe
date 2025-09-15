@@ -7,7 +7,7 @@ export const getShoe = asyncGuard(async (_req: Request, res: Response) => {
     const shoes = await shoeModel.find();
 
     if (!shoes) {
-        return res.status(404).json(new ApiResponse(404, "Shoes not found"));
+        throw new Error("Shoes are not found");
     }
 
     return res.status(200).json(new ApiResponse(200, "Products", shoes));

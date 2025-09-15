@@ -25,4 +25,8 @@ import productRouter from "./routes/product.route.js";
 
 app.use("/api/products", productRouter);
 
+import { globalErrorHandler } from "@/utils/error.handle.js";
+
+app.use(globalErrorHandler);
+
 export default app;
