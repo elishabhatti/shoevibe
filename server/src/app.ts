@@ -5,7 +5,7 @@ import cors from "cors";
 import helmet from "helmet";
 import express from "express";
 import { rateLimit } from "express-rate-limit";
-import type { Express, Request, Response } from "express";
+import type { Express } from "express";
 
 import { env, globalLimiter } from "./constant.js";
 
@@ -24,5 +24,9 @@ app.use(express.urlencoded({ limit: "20mb", extended: true }));
 import productRouter from "./routes/product.route.js";
 
 app.use("/api/products", productRouter);
+
+import { globalErrorHandler } from "@/utils/error.handle.js";
+
+app.use(globalErrorHandler);
 
 export default app;
