@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "strict": true,
+        "strictNullChecks": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noEmitOnError": true,
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["src/*"]
+        },
+        "rootDir": "src",
+        "outDir": "dist",
+        "composite": false,
+        "declaration": true,
+        "sourceMap": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "allowUnreachableCode": false,
+        "allowJs": false,
+        "maxNodeModuleJsDepth": 1
+    },
+    "include": ["src/**/*", "types/**/*"],
+    "exclude": ["node_modules", "dist", "build", "templates"]
+}
