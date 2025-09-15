@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { renderProducts } from "../api/api.js";
 
 const Home = () => {
   interface Shoe {
@@ -13,19 +14,24 @@ const Home = () => {
   }
 
   const [shoes, setShoes] = useState<Shoe[]>([]);
+  const [brand, setBrand] = useState("");
 
   useEffect(() => {
     const fetchShoes = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/shoe");
-        const data = await res.json();
-        setShoes(data.data);
+        const res = await renderProducts();
+        console.log(res); // check this first!!!
+
+        // setShoes(res);
+        // setBrand(res.brand);
       } catch (err) {
         console.error("Error fetching shoes:", err);
       }
     };
     fetchShoes();
   }, []);
+
+  const handleCategoriesChange = () => {};
 
   return (
     <div className="flex flex-col items-center p-10 bg-white text-black">
@@ -82,9 +88,19 @@ const Home = () => {
 
       {/* PRODUCT SECTION */}
       <div className=" w-full max-w-7xl">
-        <h1 className="text-4xl my-8 font-bold text-center text-black">
-          Our Collection
-        </h1>
+        <div>
+          <h1 className="text-4xl my-8 font-bold text-center text-black">
+            Our Collection
+          </h1>
+          <div>
+            <select onChange={handleCategoriesChange}>
+              <option value="all">All</option>
+              <option value="addidas">Addidas</option>
+              <option value="nike">Nike</option>
+              <option value="puma">Puma</option>
+            </select>
+          </div>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {shoes.map((shoe, index) => (
             <motion.div
