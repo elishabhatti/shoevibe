@@ -5,7 +5,7 @@ import cors from "cors";
 import helmet from "helmet";
 import express from "express";
 import { rateLimit } from "express-rate-limit";
-import type { Express, Request, Response } from "express";
+import type { Express } from "express";
 
 import { env, globalLimiter } from "./constant.js";
 
