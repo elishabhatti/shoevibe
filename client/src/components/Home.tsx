@@ -15,16 +15,13 @@ const Home = () => {
   }
 
   const [shoes, setShoes] = useState<Shoe[]>([]);
-  // const [brand, setBrand] = useState("");
+  const [brand, setBrand] = useState("all");
 
   useEffect(() => {
     const fetchShoes = async () => {
       try {
         const res = await renderProducts();
-        console.log(res); 
-
         setShoes(res.data);
-        // setBrand(res.brand);
       } catch (err) {
         console.error("Error fetching shoes:", err);
       }
@@ -32,7 +29,18 @@ const Home = () => {
     fetchShoes();
   }, []);
 
-  const handleCategoriesChange = () => {};
+  // ✅ Brand change handler
+  const handleCategoriesChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setBrand(e.target.value);
+  };
+
+  // ✅ Filtering logic
+  const filteredProducts =
+    brand === "all"
+      ? shoes
+      : shoes.filter(
+          (item) => item.brand.toLowerCase() === brand.toLowerCase()
+        );
 
   return (
     <div className="flex flex-col items-center p-10 bg-white text-black">
@@ -81,29 +89,26 @@ const Home = () => {
             />
           </motion.div>
         </div>
-
-        {/* Subtle Blurred Circles in Gray */}
-        <div className="absolute top-20 -left-20 w-72 h-72 bg-gray-200/40 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 -right-20 w-72 h-72 bg-gray-300/40 rounded-full blur-3xl"></div>
       </section>
 
       {/* PRODUCT SECTION */}
-      <div className=" w-full max-w-7xl">
+      <div className="w-full max-w-7xl">
         <div>
           <h1 className="text-4xl my-8 font-bold text-center text-black">
             Our Collection
           </h1>
           <div>
-            <select onChange={handleCategoriesChange}>
+            <select className="my-4 border px-3 py-2 rounded-md" onChange={handleCategoriesChange}>
               <option value="all">All</option>
-              <option value="addidas">Addidas</option>
+              <option value="adidas">Adidas</option>
               <option value="nike">Nike</option>
               <option value="puma">Puma</option>
             </select>
           </div>
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {shoes.map((shoe, index) => (
+          {filteredProducts.map((shoe, index) => (
             <motion.div
               key={index}
               initial={{ y: 50, opacity: 0 }}
@@ -121,12 +126,14 @@ const Home = () => {
                   {shoe.title}
                 </h2>
                 <p className="text-sm text-gray-600 mt-2">{shoe.description}</p>
-                <h4 className="text-sm mt-2"><span className="font-bold">Brand:</span> {shoe.brand}</h4>
+                <h4 className="text-sm mt-2">
+                  <span className="font-bold">Brand:</span> {shoe.brand}
+                </h4>
                 <p className="text-sm">
-                  <span className="font-bold">Sizes:</span> {shoe.sizes.join(", ")}
+                  <span className="font-bold">Sizes:</span>{" "}
+                  {shoe.sizes.join(", ")}
                 </p>
                 <div className="flex justify-between items-center w-full mt-4">
-                  
                   <p className="text-xl font-bold text-black">${shoe.price}</p>
                   <div className="flex items-center space-x-2 text-sm text-gray-600">
                     <span className="flex items-center">
