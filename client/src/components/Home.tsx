@@ -16,6 +16,8 @@ const Home = () => {
 
   const [shoes, setShoes] = useState<Shoe[]>([]);
   const [brand, setBrand] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const producadsPerPage = 8;
 
   useEffect(() => {
     const fetchShoes = async () => {
@@ -32,6 +34,7 @@ const Home = () => {
   // ✅ Brand change handler
   const handleCategoriesChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setBrand(e.target.value);
+    setCurrentPage(1); // Reset to first page jab brand change ho
   };
 
   // ✅ Filtering logic
@@ -41,6 +44,19 @@ const Home = () => {
       : shoes.filter(
           (item) => item.brand.toLowerCase() === brand.toLowerCase()
         );
+
+  // ✅ Pagination logic
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="flex flex-col items-center p-10 bg-white text-black">
@@ -65,14 +81,6 @@ const Home = () => {
               <br />
               Discover the perfect pair today.
             </p>
-            <div className="flex gap-4 mt-6">
-              <button className="bg-black text-white px-8 py-3 rounded-full font-semibold shadow-md hover:scale-105 transition-transform">
-                Shop Now
-              </button>
-              <button className="border border-black px-8 py-3 rounded-full hover:bg-black hover:text-white transition-colors">
-                Learn More
-              </button>
-            </div>
           </motion.div>
 
           {/* Right Image */}
@@ -97,8 +105,12 @@ const Home = () => {
           <h1 className="text-4xl my-8 font-bold text-center text-black">
             Our Collection
           </h1>
-          <div>
-            <select className="my-4 border px-3 py-2 rounded-md" onChange={handleCategoriesChange}>
+          <div className="flex items-center gap-4">
+            <h2>Categories</h2>
+            <select
+              className="my-4 border px-3 py-2 rounded-md"
+              onChange={handleCategoriesChange}
+            >
               <option value="all">All</option>
               <option value="adidas">Adidas</option>
               <option value="nike">Nike</option>
@@ -107,8 +119,9 @@ const Home = () => {
           </div>
         </div>
 
+        {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {filteredProducts.map((shoe, index) => (
+          {currentProducts.map((shoe, index) => (
             <motion.div
               key={index}
               initial={{ y: 50, opacity: 0 }}
@@ -125,7 +138,9 @@ const Home = () => {
                 <h2 className="text-xl font-semibold text-black">
                   {shoe.title}
                 </h2>
-                <p className="text-sm text-gray-600 mt-2">{shoe.description}</p>
+                <p className="text-sm text-gray-600 mt-2">
+                  {shoe.description}
+                </p>
                 <h4 className="text-sm mt-2">
                   <span className="font-bold">Brand:</span> {shoe.brand}
                 </h4>
@@ -150,6 +165,25 @@ const Home = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center mt-10 gap-2">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => handlePageChange(i + 1)}
+                className={`px-4 py-2 rounded-md border ${
+                  currentPage === i + 1
+                    ? "bg-black text-white"
+                    : "bg-white text-black hover:bg-gray-100"
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
