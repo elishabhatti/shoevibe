@@ -31,13 +31,13 @@ const Home = () => {
     fetchShoes();
   }, []);
 
-  // ✅ Brand change handler
+  // ✅ Category filter
   const handleCategoriesChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setBrand(e.target.value);
-    setCurrentPage(1); // Reset to first page jab brand change ho
+    setCurrentPage(1);
   };
 
-  // ✅ Filtering logic
+  // ✅ Filtering
   const filteredProducts =
     brand === "all"
       ? shoes
@@ -45,7 +45,7 @@ const Home = () => {
           (item) => item.brand.toLowerCase() === brand.toLowerCase()
         );
 
-  // ✅ Pagination logic
+  // ✅ Pagination
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -54,12 +54,10 @@ const Home = () => {
     indexOfLastProduct
   );
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
+  const handlePageChange = (page: number) => setCurrentPage(page);
 
   return (
-    <div className="flex flex-col items-center p-10 bg-white text-black">
+    <div className="flex flex-col items-center bg-white text-black">
       {/* HERO SECTION */}
       <section className="relative w-full bg-gray-50 rounded-2xl text-black py-20 px-6 md:px-16 overflow-hidden">
         <div className="flex flex-col md:flex-row items-center gap-12">
@@ -99,24 +97,47 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ABOUT SECTION */}
+      <section className="w-full max-w-6xl text-center py-20 px-6">
+        <motion.h2
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7 }}
+          className="text-4xl font-bold mb-6"
+        >
+          About Us
+        </motion.h2>
+        <motion.p
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="text-lg text-gray-600 max-w-3xl mx-auto"
+        >
+          We’re passionate about delivering sneakers that combine{" "}
+          <span className="font-semibold text-black">style</span>,{" "}
+          <span className="font-semibold text-black">comfort</span> and{" "}
+          <span className="font-semibold text-black">performance</span>.  
+          Whether you're hitting the gym, the streets, or just chilling, 
+          our shoes are designed to keep you moving with confidence.
+        </motion.p>
+      </section>
+
       {/* PRODUCT SECTION */}
-      <div className="w-full max-w-7xl">
-        <div>
-          <h1 className="text-4xl my-8 font-bold text-center text-black">
-            Our Collection
-          </h1>
-          <div className="flex items-center gap-4">
-            <h2>Categories</h2>
-            <select
-              className="my-4 border px-3 py-2 rounded-md"
-              onChange={handleCategoriesChange}
-            >
-              <option value="all">All</option>
-              <option value="adidas">Adidas</option>
-              <option value="nike">Nike</option>
-              <option value="puma">Puma</option>
-            </select>
-          </div>
+      <section className="w-full max-w-7xl py-16 px-6">
+        <h1 className="text-4xl mb-8 font-bold text-center">Our Collection</h1>
+
+        {/* Category Filter */}
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <h2 className="font-medium">Categories:</h2>
+          <select
+            className="border px-3 py-2 rounded-md"
+            onChange={handleCategoriesChange}
+          >
+            <option value="all">All</option>
+            <option value="adidas">Adidas</option>
+            <option value="nike">Nike</option>
+            <option value="puma">Puma</option>
+          </select>
         </div>
 
         {/* Products Grid */}
@@ -125,7 +146,7 @@ const Home = () => {
             <motion.div
               key={index}
               initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1"
             >
@@ -151,9 +172,7 @@ const Home = () => {
                 <div className="flex justify-between items-center w-full mt-4">
                   <p className="text-xl font-bold text-black">${shoe.price}</p>
                   <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <span className="flex items-center">
-                      <span className="text-black">★</span> {shoe.reviews}
-                    </span>
+                    <span>★ {shoe.reviews}</span>
                     <span>|</span>
                     <span>{shoe.stock} left</span>
                   </div>
@@ -184,7 +203,42 @@ const Home = () => {
             ))}
           </div>
         )}
-      </div>
+      </section>
+
+      {/* CONTACT SECTION */}
+      <section className="w-full bg-gray-50 py-20 px-6 text-center">
+        <motion.h2
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7 }}
+          className="text-4xl font-bold mb-6"
+        >
+          Contact Us
+        </motion.h2>
+        <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          Have questions or need support? We’d love to hear from you!
+        </p>
+        <form className="max-w-3xl mx-auto flex flex-col gap-4">
+          <input
+            type="text"
+            placeholder="Your Name"
+            className="border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          />
+          <input
+            type="email"
+            placeholder="Your Email"
+            className="border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          />
+          <textarea
+            placeholder="Your Message"
+            rows={4}
+            className="border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          ></textarea>
+          <button className="w-full py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition">
+            Send Message
+          </button>
+        </form>
+      </section>
     </div>
   );
 };
