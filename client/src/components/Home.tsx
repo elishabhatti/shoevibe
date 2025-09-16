@@ -22,7 +22,7 @@ const Home = () => {
         const res = await renderProducts();
         console.log(res); // check this first!!!
 
-        // setShoes(res);
+        setShoes(res.data);
         // setBrand(res.brand);
       } catch (err) {
         console.error("Error fetching shoes:", err);
