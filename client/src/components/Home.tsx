@@ -17,7 +17,7 @@ const Home = () => {
   const [shoes, setShoes] = useState<Shoe[]>([]);
   const [brand, setBrand] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const producadsPerPage = 8;
+  const productsPerPage = 8;
 
   useEffect(() => {
     const fetchShoes = async () => {
