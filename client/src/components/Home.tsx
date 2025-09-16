@@ -11,16 +11,17 @@ const Home = () => {
     reviews: string;
     sizes: string[];
     stock: string;
+    brand: string;
   }
 
   const [shoes, setShoes] = useState<Shoe[]>([]);
-  const [brand, setBrand] = useState("");
+  // const [brand, setBrand] = useState("");
 
   useEffect(() => {
     const fetchShoes = async () => {
       try {
         const res = await renderProducts();
-        console.log(res); // check this first!!!
+        console.log(res); 
 
         setShoes(res.data);
         // setBrand(res.brand);
@@ -120,7 +121,12 @@ const Home = () => {
                   {shoe.title}
                 </h2>
                 <p className="text-sm text-gray-600 mt-2">{shoe.description}</p>
+                <h4 className="text-sm mt-2"><span className="font-bold">Brand:</span> {shoe.brand}</h4>
+                <p className="text-sm">
+                  <span className="font-bold">Sizes:</span> {shoe.sizes.join(", ")}
+                </p>
                 <div className="flex justify-between items-center w-full mt-4">
+                  
                   <p className="text-xl font-bold text-black">${shoe.price}</p>
                   <div className="flex items-center space-x-2 text-sm text-gray-600">
                     <span className="flex items-center">
@@ -130,9 +136,6 @@ const Home = () => {
                     <span>{shoe.stock} left</span>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mt-2">
-                  Sizes: {shoe.sizes.join(", ")}
-                </p>
                 <button className="w-full mt-5 py-3 px-6 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition">
                   Add to Cart
                 </button>
